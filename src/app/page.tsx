@@ -63,7 +63,7 @@ export default function Home() {
             onAnimationComplete={() => handleAnimationComplete("first")}
             style={{ y: textY1 }}
           >
-            Hello, I'm Herzlia Jane Barangan
+            Hello, I&apos;m Herzlia Jane Barangan
           </motion.div>
           <motion.div
             className='text-md md:text-2xl font-semibold text-white'
@@ -73,7 +73,7 @@ export default function Home() {
             onAnimationComplete={() => handleAnimationComplete("second")}
             style={{ y: textY2 }}
           >
-            I'm a Full Stack Developer.
+            I&apos;m a Full Stack Developer.
           </motion.div>
           {isBothAnimationComplete && (
             <motion.div

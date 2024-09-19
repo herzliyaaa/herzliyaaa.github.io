@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Navbar from "@/components/shared/Navbar";
 import "./globals.css";
-import { Suspense } from "react";
 import NextTopLoader from "nextjs-toploader";
 
 const geistSans = localFont({

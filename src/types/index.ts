@@ -1,5 +1,5 @@
 export interface ILottie {
-    data: any;
+    data: string;
     length: number;
     width: number;
   }

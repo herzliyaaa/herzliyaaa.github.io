@@ -7,7 +7,7 @@ import {
 } from "@radix-ui/react-icons";
 
 import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface ProjectProps {
   id: string;
