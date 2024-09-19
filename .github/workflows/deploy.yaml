@@ -12,17 +12,21 @@ jobs:
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
+
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: "18"
+
       - name: Install dependencies
         run: npm install
+
       - name: Build the Next.js app
-        run: npm run build && npm run export  # Exports static files to the out directory
+        run: npm run build
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out  # The output directory for static files
+          publish_dir: ./out # The output directory for static files
           publish_branch: gh-pages
