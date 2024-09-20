@@ -26,11 +26,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
-        <NextTopLoader color='indigo' height={6} speed={700} />
+        <NextTopLoader color="indigo" height={6} speed={700} />
         <Navbar />
 
         {children}

@@ -5,7 +5,7 @@ import {
   GlobeIcon,
   InputIcon,
 } from "@radix-ui/react-icons";
-
+import { useEffect, useState } from "react";
 import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
 import { motion } from "framer-motion";
 
@@ -14,6 +14,22 @@ interface ProjectProps {
 }
 
 const Project = ({ id }: ProjectProps) => {
+  const [initialProps] = useState({ opacity: 0, y: 50 });
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 700);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const features = [
     {
       Icon: FileTextIcon,
@@ -21,7 +37,7 @@ const Project = ({ id }: ProjectProps) => {
       description: "We automatically save your files as you type.",
       href: "/",
       cta: "Learn more",
-      background: <img className='absolute -right-20 -top-20 opacity-60' />,
+      background: <img className="absolute -right-20 -top-20 opacity-60" />,
       className: "lg:row-start-1 lg:row-end-4 lg:col-start-2 lg:col-end-3",
     },
     {
@@ -30,7 +46,7 @@ const Project = ({ id }: ProjectProps) => {
       description: "Search through all your files in one place.",
       href: "/",
       cta: "Learn more",
-      background: <img className='absolute -right-20 -top-20 opacity-60' />,
+      background: <img className="absolute -right-20 -top-20 opacity-60" />,
       className: "lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3",
     },
     {
@@ -39,7 +55,7 @@ const Project = ({ id }: ProjectProps) => {
       description: "Supports 100+ languages and counting.",
       href: "/",
       cta: "Learn more",
-      background: <img className='absolute -right-20 -top-20 opacity-60' />,
+      background: <img className="absolute -right-20 -top-20 opacity-60" />,
       className: "lg:col-start-1 lg:col-end-2 lg:row-start-3 lg:row-end-4",
     },
     {
@@ -48,7 +64,7 @@ const Project = ({ id }: ProjectProps) => {
       description: "Use the calendar to filter your files by date.",
       href: "/",
       cta: "Learn more",
-      background: <img className='absolute -right-20 -top-20 opacity-60' />,
+      background: <img className="absolute -right-20 -top-20 opacity-60" />,
       className: "lg:col-start-3 lg:col-end-3 lg:row-start-1 lg:row-end-2",
     },
     {
@@ -60,8 +76,8 @@ const Project = ({ id }: ProjectProps) => {
       cta: "Learn more",
       background: (
         <img
-          src='/assets/padpals.png'
-          className='object-contain p-3 opacity-80 '
+          src="/assets/padpals.png"
+          className="object-contain p-3 opacity-80 "
         />
       ),
       className: "lg:col-start-3 lg:col-end-3 lg:row-start-2 lg:row-end-4 ",
@@ -69,23 +85,39 @@ const Project = ({ id }: ProjectProps) => {
   ];
 
   return (
-    <section className='h-screen  py-20' id={id}>
-      <div className='container mx-auto px-4'>
-        <h2 className='text-3xl text-white font-bold text-center mt-8 mb-8'>
+    <section className="h-screen  py-20" id={id}>
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl text-white font-bold text-center mt-8 mb-8">
           Projects
         </h2>
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9 }}
-          viewport={{ once: true, amount: 0.5 }}
-        >
-          <BentoGrid className='lg:grid-rows-3'>
-            {features.map((feature) => (
-              <BentoCard key={feature.name} {...feature} />
-            ))}
-          </BentoGrid>
-        </motion.div>
+        {isMobile ? (
+          <>
+            <motion.div
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9 }}
+              viewport={{ once: true, amount: 0.5 }}
+            >
+              <BentoGrid className="lg:grid-rows-3">
+                {features.map((feature) => (
+                  <BentoCard key={feature.name} {...feature} />
+                ))}
+              </BentoGrid>
+            </motion.div>
+          </>
+        ) : (
+          <motion.div
+            initial={initialProps}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9 }}
+            viewport={{ once: true, amount: 0.5 }}
+          >
+            <BentoGrid className="lg:grid-rows-3">
+              {features.map((feature) => (
+                <BentoCard key={feature.name} {...feature} />
+              ))}
+            </BentoGrid>
+          </motion.div>
+        )}
       </div>
     </section>
   );
