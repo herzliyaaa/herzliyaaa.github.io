@@ -5,6 +5,9 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@headlessui/react";
 import { useState } from "react";
 import Image from "next/image";
+import AboutSection from "@/components/sections/About";
+import EmailSection from "@/components/sections/Contact";
+import Footer from "@/components/sections/Footer";
 
 export default function Home() {
   // Track the scroll progress
@@ -93,8 +96,10 @@ export default function Home() {
       </main>
 
       {/* Sections */}
+      <AboutSection id='about' />
       <Project id='projects' />
-      <Skills id='projects' />
+      <EmailSection />
+      {/* <Footer /> */}
     </div>
   );
 }
