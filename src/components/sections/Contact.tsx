@@ -4,8 +4,9 @@ import GithubIcon from "../../../public/assets/github-icon.svg";
 import LinkedinIcon from "../../../public/assets/linkedin-icon.svg";
 import Link from "next/link";
 import Image from "next/image";
+import { SectionProps } from "@/types";
 
-const EmailSection = () => {
+const EmailSection = ({ id }: SectionProps) => {
   const [emailSubmitted, setEmailSubmitted] = useState(false);
 
   const handleSubmit = async (e: any) => {
@@ -27,7 +28,7 @@ const EmailSection = () => {
     };
 
     const response = await fetch(endpoint, options);
-    const resData = await response.json();
+    await response.json();
 
     if (response.status === 200) {
       console.log("Message sent.");
@@ -37,8 +38,8 @@ const EmailSection = () => {
 
   return (
     <section
-      id='contact'
-      className='relative z-20 h-[70vh] md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-16 sm:py-16 xl:px-16'
+      id={id}
+      className='relative  z-20 h-[70vh] md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-16 sm:py-16 xl:px-16'
     >
       <div className='bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-900 to-transparent rounded-full h-80 w-80 z-0 blur-lg absolute top-3/4 -left-4 transform -translate-x-1/2 -translate-1/2'></div>
       <div className='z-10'>

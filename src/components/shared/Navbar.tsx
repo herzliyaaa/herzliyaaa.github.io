@@ -19,10 +19,13 @@ export default function Navbar() {
           <a href='/' className='text-indigo-400 font-bold hover:text-white'>
             Home
           </a>
+          <a href='#about' className='text-indigo-400 font-bold hover:text-white'>
+            About
+          </a>
           <a href='#projects' className='text-indigo-400 font-bold hover:text-white'>
             Projects
           </a>
-          <a href='/contact' className='text-indigo-400 font-bold hover:text-white'>
+          <a href='#contact' className='text-indigo-400 font-bold hover:text-white'>
             Contact
           </a>
         </div>
@@ -49,19 +52,19 @@ export default function Navbar() {
             Home
           </a>
           <a
-            href='/about'
+            href='#about'
             className='block px-4 py-2 text-gray-300 hover:text-white'
           >
             About
           </a>
           <a
-            href='/services'
+            href='#projects'
             className='block px-4 py-2 text-gray-300 hover:text-white'
           >
-            Services
+            Projects
           </a>
           <a
-            href='/contact'
+            href='#contact'
             className='block px-4 py-2 text-gray-300 hover:text-white'
           >
             Contact

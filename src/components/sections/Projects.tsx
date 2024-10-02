@@ -8,12 +8,10 @@ import {
 import { useEffect, useState } from "react";
 import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
 import { motion } from "framer-motion";
+import { SectionProps } from "@/types";
 
-interface ProjectProps {
-  id: string;
-}
 
-const Project = ({ id }: ProjectProps) => {
+const Project = ({ id }: SectionProps) => {
   const [initialProps] = useState({ opacity: 0, y: 50 });
   const [isMobile, setIsMobile] = useState(false);
 
@@ -85,8 +83,8 @@ const Project = ({ id }: ProjectProps) => {
   ];
 
   return (
-    <section className='min-h-screen' id={id}>
-      <div className='container mx-auto px-4'>
+    <section className='min-h-screen  ' id={id}>
+      <div className='container mx-auto py-4'>
         <h2 className='text-3xl text-white font-bold text-center mt-8 mb-8'>
           Projects
         </h2>

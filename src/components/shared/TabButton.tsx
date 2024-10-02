@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 
 interface TabButtonProps {

@@ -1,13 +1,12 @@
 "use client";
 import Project from "@/components/sections/Projects";
-import Skills from "@/components/sections/Skills";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@headlessui/react";
 import { useState } from "react";
 import Image from "next/image";
 import AboutSection from "@/components/sections/About";
 import EmailSection from "@/components/sections/Contact";
-import Footer from "@/components/sections/Footer";
+// import Footer from "@/components/sections/Footer";
 
 export default function Home() {
   // Track the scroll progress
@@ -85,7 +84,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.13 }}
             >
-              <a href='/resume.pdf' target='_blank' rel='noopener noreferrer'>
+              <a href='/herzlia-cv.pdf' target='_blank' rel='noopener noreferrer'>
                 <Button className='text-indigo-500 font-semibold border border-indigo-400 rounded-lg p-2 hover:bg-indigo-400 hover:text-white'>
                   Download CV
                 </Button>
@@ -98,7 +97,7 @@ export default function Home() {
       {/* Sections */}
       <AboutSection id='about' />
       <Project id='projects' />
-      <EmailSection />
+      <EmailSection id='contact'/>
       {/* <Footer /> */}
     </div>
   );
