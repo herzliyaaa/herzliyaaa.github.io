@@ -1,11 +1,11 @@
-"use client";
-import Project from "@/components/sections/Projects";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { Button } from "@headlessui/react";
-import { useState } from "react";
-import Image from "next/image";
-import AboutSection from "@/components/sections/About";
-import EmailSection from "@/components/sections/Contact";
+'use client';
+import Project from '@/components/sections/Projects';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Button } from '@headlessui/react';
+import { useState } from 'react';
+import Image from 'next/image';
+import AboutSection from '@/components/sections/About';
+import EmailSection from '@/components/sections/Contact';
 // import Footer from "@/components/sections/Footer";
 
 export default function Home() {
@@ -21,8 +21,8 @@ export default function Home() {
     second: false,
   });
 
-  const handleAnimationComplete = (key: "first" | "second") => {
-    setIsAnimationComplete((prevState) => ({
+  const handleAnimationComplete = (key: 'first' | 'second') => {
+    setIsAnimationComplete(prevState => ({
       ...prevState,
       [key]: true,
     }));
@@ -38,10 +38,10 @@ export default function Home() {
       <main className='flex flex-col md:flex-row justify-center items-center h-screen'>
         {/* Left side: Avatar with parallax effect */}
         <motion.div
-          className='w-full md:w-1/2 flex justify-center md:justify-end p-8 md:p-24'
+          className='w-full md:w-1/2 flex justify-center md:justify-end p-8 md:p-24 '
           style={{ y: avatarY }}
         >
-          <div className='w-3/4 md:w-full max-w-full h-auto'>
+          <div className='flex justify-end w-3/4 md:w-full max-w-full h-auto'>
             <FramerImage
               src='/assets/herzlia.jpg'
               alt='Portfolio Avatar'
@@ -62,7 +62,7 @@ export default function Home() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.16 }}
-            onAnimationComplete={() => handleAnimationComplete("first")}
+            onAnimationComplete={() => handleAnimationComplete('first')}
             style={{ y: textY1 }}
           >
             Hello, I&apos;m Herzlia Jane Barangan
@@ -72,10 +72,10 @@ export default function Home() {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5 }}
-            onAnimationComplete={() => handleAnimationComplete("second")}
+            onAnimationComplete={() => handleAnimationComplete('second')}
             style={{ y: textY2 }}
           >
-            I&apos;m a Full Stack Developer.
+            Full Stack Developer | DevOps Engineer.
           </motion.div>
           {isBothAnimationComplete && (
             <motion.div
@@ -84,7 +84,11 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.13 }}
             >
-              <a href='/herzlia-cv.pdf' target='_blank' rel='noopener noreferrer'>
+              <a
+                href='/herzlia-cv.pdf'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 <Button className='text-indigo-500 font-semibold border border-indigo-400 rounded-lg p-2 hover:bg-indigo-400 hover:text-white'>
                   Download CV
                 </Button>
@@ -97,7 +101,7 @@ export default function Home() {
       {/* Sections */}
       <AboutSection id='about' />
       <Project id='projects' />
-      <EmailSection id='contact'/>
+      <EmailSection id='contact' />
       {/* <Footer /> */}
     </div>
   );

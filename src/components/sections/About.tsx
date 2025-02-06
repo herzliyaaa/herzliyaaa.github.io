@@ -1,7 +1,7 @@
-"use client";
-import React, { useTransition, useState } from "react";
-import { SectionProps } from "@/types";
-import TabButton from "@/components/shared/TabButton";
+'use client';
+import React, { useTransition, useState } from 'react';
+import { SectionProps } from '@/types';
+import TabButton from '@/components/shared/TabButton';
 import {
   FaDocker,
   FaNodeJs,
@@ -9,7 +9,7 @@ import {
   FaAws,
   FaHtml5,
   FaCss3,
-} from "react-icons/fa";
+} from 'react-icons/fa';
 import {
   DiJsBadge,
   DiMongodb,
@@ -18,8 +18,8 @@ import {
   DiGit,
   DiPostgresql,
   DiRedis,
-} from "react-icons/di";
-import { RiTailwindCssLine, RiNextjsLine } from "react-icons/ri";
+} from 'react-icons/di';
+import { RiTailwindCssLine, RiNextjsLine } from 'react-icons/ri';
 import {
   SiPrisma,
   SiTypescript,
@@ -28,47 +28,47 @@ import {
   SiSap,
   SiCoursera,
   SiUdemy,
-} from "react-icons/si";
-import { GiGraduateCap } from "react-icons/gi";
-import IconCloud from "@/components/ui/icon-cloud";
+} from 'react-icons/si';
+import { GiGraduateCap } from 'react-icons/gi';
+import IconCloud from '@/components/ui/icon-cloud';
 
 const slugs = [
-  "typescript",
-  "javascript",
-  "dart",
-  "java",
-  "react",
-  "flutter",
-  "android",
-  "html5",
-  "css3",
-  "nodedotjs",
-  "express",
-  "nextdotjs",
-  "prisma",
-  "amazonaws",
-  "postgresql",
-  "firebase",
-  "nginx",
-  "vercel",
-  "testinglibrary",
-  "jest",
-  "cypress",
-  "docker",
-  "git",
-  "jira",
-  "github",
-  "gitlab",
-  "visualstudiocode",
-  "androidstudio",
-  "sonarqube",
-  "figma",
+  'typescript',
+  'javascript',
+  'dart',
+  'java',
+  'react',
+  'flutter',
+  'android',
+  'html5',
+  'css3',
+  'nodedotjs',
+  'express',
+  'nextdotjs',
+  'prisma',
+  'amazonaws',
+  'postgresql',
+  'firebase',
+  'nginx',
+  'vercel',
+  'testinglibrary',
+  'jest',
+  'cypress',
+  'docker',
+  'git',
+  'jira',
+  'github',
+  'gitlab',
+  'visualstudiocode',
+  'androidstudio',
+  'sonarqube',
+  'figma',
 ];
 
 const TAB_DATA = [
   {
-    title: "Skills",
-    id: "skills",
+    title: 'Skills',
+    id: 'skills',
     content: (
       <div className='grid grid-cols-3 gap-4'>
         <div className='flex items-center'>
@@ -151,12 +151,12 @@ const TAB_DATA = [
     ),
   },
   {
-    title: "Education",
-    id: "education",
+    title: 'Education',
+    id: 'education',
     content: (
       <div className='grid grid-cols-1 gap-4'>
         <div className='flex items-center'>
-          <GiGraduateCap className='mr-2' />{" "}
+          <GiGraduateCap className='mr-2' />{' '}
           <span className='text-lg font-bold'>
             Mindanao State University - General Santos City
           </span>
@@ -171,15 +171,15 @@ const TAB_DATA = [
     ),
   },
   {
-    title: "Certifications",
-    id: "certifications",
+    title: 'Certifications',
+    id: 'certifications',
     content: (
       <div className='grid grid-cols-1 gap-4'>
         <div className='flex items-center'>
-          <SiCoursera className='mr-2' />{" "}
+          <SiCoursera className='mr-2' />{' '}
           <span className='text-lg font-bold'>
             Modern JavaScript: ES6 Basics
-          </span>{" "}
+          </span>{' '}
         </div>
         <div className='ml-7 flex items-center'>
           <span className='text-sm border border-indigo-400 rounded-xl p-2 hover:border-indigo-600'>
@@ -193,7 +193,7 @@ const TAB_DATA = [
         </div>
 
         <div className='flex items-center'>
-          <SiUdemy className='mr-2' />{" "}
+          <SiUdemy className='mr-2' />{' '}
           <span className='text-lg font-bold'>Python for Beginners</span>
         </div>
         <div className='ml-7 flex items-center'>
@@ -212,7 +212,7 @@ const TAB_DATA = [
 ];
 
 const AboutSection = ({ id }: SectionProps) => {
-  const [tab, setTab] = useState("skills");
+  const [tab, setTab] = useState('skills');
   const [, startTransition] = useTransition();
 
   const handleTabChange = (id: string) => {
@@ -221,7 +221,7 @@ const AboutSection = ({ id }: SectionProps) => {
     });
   };
 
-  const activeTab = TAB_DATA.find((t) => t.id === tab);
+  const activeTab = TAB_DATA.find(t => t.id === tab);
 
   return (
     <section className='min-h-screen text-white' id={id}>
@@ -242,22 +242,28 @@ const AboutSection = ({ id }: SectionProps) => {
             adapt to new technologies make me a valuable asset to any
             development team.
           </p>
-          <div className='flex flex-row justify-start mt-8'>
+          <div className='flex flex-row justify-start mt-8 gap-3'>
             <TabButton
-              selectTab={() => handleTabChange("skills")}
-              active={tab === "skills"}
+              selectTab={() => handleTabChange('skills')}
+              active={tab === 'skills'}
             >
               Skills
             </TabButton>
             <TabButton
-              selectTab={() => handleTabChange("education")}
-              active={tab === "education"}
+              selectTab={() => handleTabChange('experience')}
+              active={tab === 'experience'}
+            >
+              Experience
+            </TabButton>
+            <TabButton
+              selectTab={() => handleTabChange('education')}
+              active={tab === 'education'}
             >
               Education
             </TabButton>
             <TabButton
-              selectTab={() => handleTabChange("certifications")}
-              active={tab === "certifications"}
+              selectTab={() => handleTabChange('certifications')}
+              active={tab === 'certifications'}
             >
               Certifications
             </TabButton>

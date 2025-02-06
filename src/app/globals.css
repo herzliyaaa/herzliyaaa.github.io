@@ -64,9 +64,16 @@
     @apply border-border;
   }
   body {
-    @apply bg-[#121212]  text-foreground;
+    @apply bg-[#121212] text-foreground;
+    background-image: url(/topology.jpg);
+    background-size: cover;
+    background-position: left;
+    background-repeat: repeat;
+    background-blend-mode: multiply;
+    background-color: rgba(18, 18, 18, 0.6);
   }
 }
+
 /* Global Scrollbar styles for WebKit browsers (Chrome, Safari, etc.) */
 html,
 body {
