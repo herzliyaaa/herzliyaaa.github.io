@@ -227,9 +227,9 @@ const AboutSection = ({ id }: SectionProps) => {
     <section className='min-h-screen text-white' id={id}>
       <div className='md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-16 sm:py-16 xl:px-16'>
         <IconCloud iconSlugs={slugs} />
-        <div className='mt-4 md:mt-0 text-left flex flex-col h-full'>
+        <div className='pt-14 md:pt-0 text-left flex flex-col h-full'>
           <h2 className='text-4xl font-bold text-white mb-4'>About Me</h2>
-          <p className='text-base lg:text-lg'>
+          <p className='text-sm md:text-base lg:text-lg'>
             As a full-stack developer with two years of experience, I have a
             proven track record of designing and building secure, scalable web
             applications. My expertise in JavaScript, TypeScript, and Python,

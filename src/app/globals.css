@@ -71,6 +71,7 @@
     background-repeat: repeat;
     background-blend-mode: multiply;
     background-color: rgba(18, 18, 18, 0.6);
+    font-family: var(--font-sf-pro-sans), Helvetica, sans-serif;
   }
 }
 

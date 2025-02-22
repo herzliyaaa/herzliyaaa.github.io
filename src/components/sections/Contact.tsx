@@ -1,38 +1,50 @@
-"use client";
-import React, { useState } from "react";
-import GithubIcon from "../../../public/assets/github-icon.svg";
-import LinkedinIcon from "../../../public/assets/linkedin-icon.svg";
-import Link from "next/link";
-import Image from "next/image";
-import { SectionProps } from "@/types";
+'use client';
+import React, { useState } from 'react';
+import GithubIcon from '../../../public/assets/github-icon.svg';
+import LinkedinIcon from '../../../public/assets/linkedin-icon.svg';
+import Link from 'next/link';
+import Image from 'next/image';
+import { SectionProps } from '@/types';
+import { useForm } from 'react-hook-form';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const EmailSection = ({ id }: SectionProps) => {
   const [emailSubmitted, setEmailSubmitted] = useState(false);
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    const data = {
-      email: e.target.email.value,
-      subject: e.target.subject.value,
-      message: e.target.message.value,
-    };
-    const JSONdata = JSON.stringify(data);
-    const endpoint = "/api/send";
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSONdata,
-    };
+  const onSubmit = async (data: any) => {
+    try {
+      console.log('Info:', data);
 
-    const response = await fetch(endpoint, options);
-    await response.json();
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
 
-    if (response.status === 200) {
-      console.log("Message sent.");
-      setEmailSubmitted(true);
+      const result = await response.json();
+
+      if (response.ok) {
+        console.log('Message sent:', result);
+        setEmailSubmitted(true);
+        reset();
+        toast.success('Message sent successfully!');
+      } else {
+        console.error('Error sending message:', result);
+        toast.error(result.error || 'Failed to send message.');
+      }
+    } catch (error) {
+      console.error('Network error:', error);
+      toast.error('An unexpected network error occurred.');
     }
   };
 
@@ -47,81 +59,90 @@ const EmailSection = ({ id }: SectionProps) => {
           Let&apos;s Connect
         </h5>
         <p className='text-[#ADB7BE] mb-4 max-w-md'>
-          {" "}
+          {' '}
           I&apos;m currently looking for new opportunities, my inbox is always
           open. Whether you have a question or just want to say hi, I&apos;ll
           try my best to get back to you!
         </p>
-        <div className='socials flex flex-row gap-2'>
+        <div className='socials flex flex-row gap-2 pt-2 pb-10'>
           <Link href='github.com'>
-            <Image src={GithubIcon} alt='Github Icon' />
+            <Image
+              src={GithubIcon}
+              alt='Github Icon'
+              className='hover:bg-indigo-700 hover:rounded-lg'
+            />
           </Link>
           <Link href='linkedin.com'>
-            <Image src={LinkedinIcon} alt='Linkedin Icon' />
+            <Image
+              src={LinkedinIcon}
+              alt='Linkedin Icon'
+              className='hover:bg-indigo-700 hover:rounded-lg'
+            />
           </Link>
         </div>
       </div>
       <div>
-        {emailSubmitted ? (
-          <p className='text-green-500 text-sm mt-2'>
-            Email sent successfully!
-          </p>
-        ) : (
-          <form className='flex flex-col' onSubmit={handleSubmit}>
-            <div className='mb-6'>
-              <label
-                htmlFor='email'
-                className='text-white block mb-2 text-sm font-medium'
-              >
-                Your email
-              </label>
-              <input
-                name='email'
-                type='email'
-                id='email'
-                required
-                className='bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5'
-                placeholder='email@google.com'
-              />
-            </div>
-            <div className='mb-6'>
-              <label
-                htmlFor='subject'
-                className='text-white block text-sm mb-2 font-medium'
-              >
-                Subject
-              </label>
-              <input
-                name='subject'
-                type='text'
-                id='subject'
-                required
-                className='bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5'
-                placeholder='Just saying hi'
-              />
-            </div>
-            <div className='mb-6'>
-              <label
-                htmlFor='message'
-                className='text-white block text-sm mb-2 font-medium'
-              >
-                Message
-              </label>
-              <textarea
-                name='message'
-                id='message'
-                className='bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5'
-                placeholder="Let's talk about..."
-              />
-            </div>
-            <button
-              type='submit'
-              className='bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-2.5 px-5 rounded-lg w-full'
+        <form className='flex flex-col py-8' onSubmit={handleSubmit(onSubmit)}>
+          <div className='mb-6'>
+            <label
+              htmlFor='email'
+              className='text-white block mb-2 text-sm font-medium'
             >
-              Send Message
-            </button>
-          </form>
-        )}
+              Your email
+            </label>
+            <input
+              type='email'
+              id='email'
+              {...register('email', {
+                required: true,
+                pattern: /^\S+@\S+$/i,
+              })}
+              className='bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5'
+              placeholder='email@google.com'
+            />
+          </div>
+          <div className='mb-6'>
+            <label
+              htmlFor='subject'
+              className='text-white block text-sm mb-2 font-medium'
+            >
+              Subject
+            </label>
+            <input
+              type='text'
+              id='subject'
+              {...register('subject', {})}
+              className='bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5'
+              placeholder='Just saying hi'
+            />
+          </div>
+          <div className='mb-6'>
+            <label
+              htmlFor='message'
+              className='text-white block text-sm mb-2 font-medium'
+            >
+              Message
+            </label>
+            <textarea
+              id='message'
+              {...register('message', { required: true })}
+              className='bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5'
+              placeholder="Let's talk about..."
+            />
+          </div>
+          <ToastContainer />
+          <button
+            type='submit'
+            className='bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-2.5 px-5 rounded-lg w-full'
+          >
+            Send Message
+          </button>
+          {emailSubmitted && (
+            <div className='flex w-full items-center justify-center'>
+              <p className='mt-4 text-green-400'>Thank you for your message!</p>
+            </div>
+          )}
+        </form>
       </div>
     </section>
   );
