@@ -12,12 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const EmailSection = ({ id }: SectionProps) => {
   const [emailSubmitted, setEmailSubmitted] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = async (data: any) => {
     try {

@@ -1,24 +1,7 @@
-import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { SectionProps } from '@/types';
 
 const Project = ({ id }: SectionProps) => {
-  const [initialProps] = useState({ opacity: 0, y: 50 });
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 700);
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
   const projects = [
     {
       id: 1,
@@ -74,7 +57,7 @@ const Project = ({ id }: SectionProps) => {
 
   return (
     <section
-      id='projects'
+      id={id}
       className='py-16  text-white relative overflow-hidden'
     >
       <div className='container mx-auto px-4 relative z-10'>

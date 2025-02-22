@@ -5,7 +5,7 @@ import { Button } from '@headlessui/react';
 import { useState } from 'react';
 import Image from 'next/image';
 import { SectionProps } from '@/types';
-import TopologyBackground from './Topo'; // Adjust the path
+
 const Hero = ({ id }: SectionProps) => {
   const { scrollYProgress } = useScroll();
 
